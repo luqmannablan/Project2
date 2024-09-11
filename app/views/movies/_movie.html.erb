@@ -1,23 +1,20 @@
-<div id="<%= dom_id movie %>">
-  <table>
+  <style>
+    table{
+      border-collapse: separate;
+      border-spacing:10px
+    }
+    th,td{
+      padding: 20px;
+      text-align: left;
+     
+    }
+  </style>
+  
   <tr>
-    <th>Title:</th>
     <td><%= movie.title %></td>
-  </tr>
-
-  <tr>
-    <th>Rating:</th>
     <td><%= movie.rating %></td>
-  </tr>
-
-  <tr>
-    <th>Description:</th>
-    <td><%= movie.description %></td>
-  </tr>
-
-  <tr>
-    <th>Release date:</th>
     <td><%= movie.release_date %></td>
   </tr>
-  </table>
-</div>
+    
+
+

@@ -33,6 +33,11 @@ gem "bootsnap", require: false
 group :development, :test do
   gem 'sqlite3'
 end
+
+group :production do
+  gem 'pg' # postgresql for Heroku deployment
+end
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -60,6 +65,3 @@ group :test do
   gem "selenium-webdriver"
 end
 
-group :production do
-  gem 'pg' # for Heroku deployment
-end

@@ -1,11 +1,30 @@
+<% content_for :head do %>
+  <style>
+    .title-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: #FF6347;
+      text-decoration: none;
+      padding: 10px;
+      border: 2px solid #FF6347;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .title-text:hover {
+      background-color: #FF6347;
+      color: #FFFFFF;
+    }
+  </style>
+<% end %>
 <% content_for :title, "New movie" %>
+<body style="background-color: #FFCCCB;">
+  <h1 class="title-text">New movie</h1>
 
-<h1>New movie</h1>
+  <%= render "form", movie: @movie %>
 
-<%= render "form", movie: @movie %>
+  <br>
 
-<br>
-
-<div>
-  <%= link_to "Back to movies", movies_path(sort: @sort_column, direction: @sort_direction) %>
-</div>
+  <div>
+    <%= link_to "Back to movies", movies_path(sort: @sort_column, direction: @sort_direction) %>
+  </div>
+</body>

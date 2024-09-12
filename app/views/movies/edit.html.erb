@@ -1,12 +1,13 @@
 <% content_for :title, "Editing movie" %>
 
-<h1>Editing movie</h1>
+<h1 style="text-align: center;">Editing movie</h1>
 
 <%= render "form", movie: @movie %>
 
 <br>
-
-<div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path(sort: @sort_column, direction: @sort_direction) %>
-</div>
+<body style="background-color: #FFFFC5;">
+  <div style="text-align: center;">
+    <%= link_to "Show this movie", @movie %> |
+    <%= link_to "Back to movies", movies_path(sort: @sort_column, direction: @sort_direction) %>
+  </div>
+</body>

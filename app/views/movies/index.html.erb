@@ -1,25 +1,63 @@
 <p style="color: green"><%= notice %></p>
 
+
+<style>
+  table{
+    border-collapse: separate;
+    border-spacing:10px
+  }
+  th,td{
+    padding: 20px;
+    text-align: left;
+  
+  }
+</style>
+
+
+
 <% content_for :title, "Movies" %>
+<body style="background-color: #cefad0;">
+  <h1>Movies</h1>
 
-<h1>Movies</h1>
+  <div id="movies">
+    <table>
+      <thead>
+        <tr>
+          <th style="<%= @sort_column == 'title' ? (@sort_direction == 'asc' ? 'background-color: #FF474D;' : 'background-color: #ADD8E6;') : 'background-color: transparent;' %>">
+            <%= link_to 'Title', movies_path(sort: 'title', direction: (@sort_column == 'title' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+  
+          </th>
+          <th style="<%= @sort_column == 'rating' ? (@sort_direction == 'asc' ? 'background-color: #FF474D;' : 'background-color: #ADD8E6;') : 'background-color: transparent;' %>">
+            <%= link_to 'Rating', movies_path(sort: 'rating', direction: (@sort_column == 'rating' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+        
+          </th>
+          <th style="<%= @sort_column == 'release_date' ? (@sort_direction == 'asc' ? 'background-color: #FF474D;' : 'background-color: #ADD8E6;') : 'background-color: transparent;' %>">
+            <%= link_to 'Release Date', movies_path(sort: 'release_date', direction: (@sort_column == 'release_date' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+        
+          </th>
+          <th>Actions</th>
+          <td colspan="4" style="text-align: right: padding-right: 15px;">
+            <% if @sort_column.present? %>
+              <span style="font-size: 1.5em; display: inline-block; color: <%= @sort_direction == 'asc' ? '#FF474D' : '#ADD8E6' %>;" 
+                aria-label="Sort by title. Currently sorted in <%= @sort_direction == 'asc' ? 'descending' : 'ascending' %> order;">
+                <%= @sort_direction == 'asc' ? '↑' : '↓' %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movies.each do |movie| %>
+          <tr>
+            <td><%= movie.title %></td>
+            <td><%= movie.rating %></td>
+            <td><%= movie.release_date %></td>
+            <td><%= link_to "Show this movie", movie %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<div id="movies">
-  <table>
-    <thead>
-      <tr>
-        <th><%= link_to 'Title', movies_path(sort: 'title', direction: (@sort_column == 'title' && @sort_direction == 'asc') ? 'desc' : 'asc') %></th>
-        <th><%= link_to 'Rating', movies_path(sort: 'rating', direction: (@sort_column == 'rating' && @sort_direction == 'asc') ? 'desc' : 'asc') %></th>
-        <th><%= link_to 'Release Date', movies_path(sort: 'release_date', direction: (@sort_column == 'release_date' && @sort_direction == 'asc') ? 'desc' : 'asc') %></th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @movies.each do |movie| %>
-        <%= render partial: "movie", locals: {movie: movie} %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<%= link_to "New movie", new_movie_path %>
+  <%= link_to "New movie", new_movie_path %>
+</body>

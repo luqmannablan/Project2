@@ -1,3 +1,22 @@
+<%#this helps to include styles %>
+<% content_for :head do %> 
+  <style>
+
+  .form-group label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  
+  }
+  .form-group{
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+
+
+  </style>
+<% end %>
 <%= form_with(model: movie) do |form| %>
   <% if movie.errors.any? %>
     <div style="color: red">
@@ -11,27 +30,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :rating, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :rating%>
     <%= form.text_field :rating %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
 
-  <div>
-    <%= form.label :release_date, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :release_date %>
     <%= form.text_field :release_date %>
   </div>
 
-  <div>
+  <div style="text-align: center;">
     <%= form.submit %>
   </div>
 <% end %>

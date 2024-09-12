@@ -1,21 +1,13 @@
-  <style>
-    table{
-      border-collapse: separate;
-      border-spacing:10px
-    }
-    th,td{
-      padding: 20px;
-      text-align: left;
-     
-    }
-  </style>
+<div id="<%= dom_id movie%>" style="text-align: center;">
   
-  <tr>
-    <td><%= movie.title %></td>
-    <td><%= movie.rating %></td>
-    <td><%= movie.release_date %></td>
-    <td><%= link_to "Show this movie", movie %></td>
-  </tr>
+
+    <h1><%= movie.title %></h1>
+    <strong><p><%= "rating: #{movie.rating}" %></p></strong>
+    <p> <%= movie.description %> <p>
+    <p><%= movie.release_date %> <p>
+</div>
+
+  
     
 
 

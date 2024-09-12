@@ -8,6 +8,8 @@ class MoviesController < ApplicationController
     @sort_column = session[:sort_column] || 'title' #default param is to sort to title
     @sort_direction = session[:sort_direction] || 'asc' #default param for direction is to sort ascending order
 
+    session[:sort_column] = @sort_column
+
     @movies = Movie.order("#{@sort_column} #{@sort_direction}")
 
   end
@@ -22,7 +24,7 @@ class MoviesController < ApplicationController
   def new
     @movie = Movie.new
     @sort_column = session[:sort_column] 
-    @sort_direction = session[:sort_direction]  
+    @sort_direction = session[:sort_direction] 
   end
 
   # GET /movies/1/edit
@@ -38,7 +40,7 @@ class MoviesController < ApplicationController
     @sort_direction = session[:sort_direction] 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to movie_path(sort: @sort_column, direction: sort_direction), notice: "Movie was successfully created." }
+        format.html { redirect_to movie_path(sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,9 +68,10 @@ class MoviesController < ApplicationController
   # DELETE /movies/1 or /movies/1.json
   def destroy
     @movie.destroy!
-
+    @sort_column = session[:sort_column] 
+    @sort_direction = session[:sort_direction] 
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+      format.html { redirect_to movie_path(sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
   end

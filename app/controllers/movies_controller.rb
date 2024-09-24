@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
     @sort_direction = session[:sort_direction] 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to movie_path(@movie, sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully created." }
+        format.html { redirect_to movies_path(@movie, sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class MoviesController < ApplicationController
     
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to movie_path(sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully updated." }
+        format.html { redirect_to movies_path(@movie, sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -71,7 +71,7 @@ class MoviesController < ApplicationController
     @sort_column = session[:sort_column] 
     @sort_direction = session[:sort_direction] 
     respond_to do |format|
-      format.html { redirect_to movie_path(sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully destroyed." }
+      format.html { redirect_to movies_path(sort: @sort_column, direction: @sort_direction), notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
   end
